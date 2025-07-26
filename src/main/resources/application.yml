@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: recruitment-task
+  profiles:
+    default: local
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+github:
+  api:
+    base-url: https://api.github.com
+    token: ${GITHUB_API_TOKEN:DEFAULT_GITHUB_API_TOKEN}
+    version: 2022-11-28
+
+logging:
+  level:
+    com.jchojdak.recruitmenttask: INFO
