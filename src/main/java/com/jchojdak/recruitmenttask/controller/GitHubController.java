@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// Path: REST /api/v1/github
 @RestController
 @RequestMapping("/github")
 @RequiredArgsConstructor
@@ -27,7 +26,6 @@ public class GitHubController {
 
     private final GitHubService githubService;
 
-    // Path: GET /api/v1/github/{login}/repos
     @Operation(
             summary = "Get non-fork repositories for a GitHub user",
             description = "Returns all non-fork repositories for a given GitHub user along with their branches"
@@ -43,5 +41,4 @@ public class GitHubController {
         List<RepoDto> repositories = githubService.getNonForkRepositories(login);
         return ResponseEntity.ok(repositories);
     }
-
 }

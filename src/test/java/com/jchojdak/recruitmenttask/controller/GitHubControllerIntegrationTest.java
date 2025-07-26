@@ -49,8 +49,7 @@ class GitHubControllerIntegrationTest {
     @Test
     @Order(1)
     @DisplayName("Should return non-fork GitHub repositories with all branches and last commit SHA for given user")
-    void givenExistingGitHubUser_whenGetNonForkRepositories_thenReturnNonForkReposWithBranchesAndLastCommitSha() throws Exception {
-        // given
+    void givenExistingGitHubUserWhenGetNonForkRepositoriesThenReturnNonForkReposWithBranchesAndLastCommitSha() throws Exception {
         String githubUser = "sampleuser";
 
         wireMock.stubFor(get(urlEqualTo("/users/" + githubUser + "/repos"))
@@ -62,19 +61,16 @@ class GitHubControllerIntegrationTest {
         wireMock.stubFor(get(urlEqualTo("/repos/sampleuser/repo3/branches"))
                 .willReturn(okJson(loadJson("repo3-branches.json"))));
 
-        // when
         var response = given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get("/api/v1/github/" + githubUser + "/repos");
 
-        // then
         response
                 .then()
-                //.log().all()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("", hasSize(2)) // only non-fork repos
+                .body("", hasSize(2))
                 .body("[0].name", is("repo1"))
                 .body("[0].owner.login", is("sampleuser"))
                 .body("[0].branches", hasSize(2))

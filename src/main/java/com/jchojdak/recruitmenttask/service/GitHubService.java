@@ -37,5 +37,4 @@ public class GitHubService {
         logger.info("Found {} non-fork repositories for user '{}'", filteredRepos.size(), login);
         return filteredRepos;
     }
-
 }

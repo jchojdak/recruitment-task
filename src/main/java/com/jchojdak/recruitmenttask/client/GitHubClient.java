@@ -79,5 +79,4 @@ public class GitHubClient {
             throw e;
         }
     }
-
 }

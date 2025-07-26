@@ -20,5 +20,4 @@ public class GlobalExceptionHandler {
         var errorResponse = new ErrorResponseDto(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
-
 }
